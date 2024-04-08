@@ -58,7 +58,14 @@ Compile using this line of code with supporting files included in [build\_file](
 gcc -Wall -Wextra -Werror -pedantic binary_tree_print.c 4-binary_tree_is_leaf.c 4-main.c 0-binary_tree_node.c 2-binary_tree_insert_right.c -o 4-leaf
 ```
 ## 5 - Check if a given node is a root
-
+The [binary\_tree\_is\_root](https://github.com/amirasabdu/holbertonschool-binary_trees/blob/main/5-binary_tree_is_root.c) function checks if a given node in a binary tree is a root node:
+- It returns 1 if the node is not NULL and has no parent (node-\>parent == NULL), indicating it is a root.
+- Otherwise, it returns 0.
+###
+Compile using this line of code with supporting files included in [build\_file](https://github.com/amirasabdu/holbertonschool-binary_trees/tree/main/build_files)
+```sh
+gcc -Wall -Wextra -Werror -pedantic binary_tree_print.c 5-binary_tree_is_root.c 5-main.c 0-binary_tree_node.c 2-binary_tree_insert_right.c -o 5-root
+```
 ## 6 - Pre-order traversal
 
 ## 7 - In-order traversal
