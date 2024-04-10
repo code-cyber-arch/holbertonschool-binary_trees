@@ -8,7 +8,7 @@
  */
 bst_t *array_to_bst(int *array, size_t size)
 {
-	int i, j;
+	size_t i, j;
 	bst_t *root = NULL;
 	
 	if (array == NULL)
