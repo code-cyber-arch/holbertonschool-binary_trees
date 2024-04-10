@@ -52,7 +52,7 @@ int QueueEmpty(Queue *q)
 }
 
 /**
- * QueueEmpty - get the front .
+ * QueueFront - get the front .
  * @q: A pointer to queue.
  * Return: return data pointer.
  */
