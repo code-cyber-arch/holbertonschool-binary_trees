@@ -12,7 +12,7 @@ int QueueEmpty(Queue* q);
  * @q: A pointer to queue
  * @data:ready to pushed data
  */
-void QueuePush(Queue *q, const binary_tree_t *data)
+void QueuePush(Queue *q, binary_tree_t *data)
 {
 	QNode *newnode;
 
@@ -106,7 +106,7 @@ void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 		q.rear = NULL;
 		q.size = 0;
 		if (tree != NULL)
-			QueuePush(&q, tree);
+			QueuePush(&q, (binary_tree_t *)tree);
 		while (!QueueEmpty(&q))
 		{
 			front = QueueFront(&q);
