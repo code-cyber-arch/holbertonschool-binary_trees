@@ -9,7 +9,7 @@ size_t binary_tree_height_for_complete(const binary_tree_t *tree)
 	int height_left, height_right;
 
 	if (tree == NULL)
-		return 0;
+		return (0);
 	if (tree->left == NULL)
 		height_left = 0;
 	else
@@ -83,11 +83,11 @@ int do_complete_recursive(const binary_tree_t *tree, int depth,
  */
 int binary_tree_is_complete(const binary_tree_t *tree)
 {
-    int is_left_finish = 0;
+	int is_left_finish = 0;
 
-    if (tree == NULL)
-        return (0);
-    return (do_complete_recursive(tree, binary_tree_height_for_complete(tree),
+	if (tree == NULL)
+		return (0);
+	return (do_complete_recursive(tree, binary_tree_height_for_complete(tree),
 			    0, &is_left_finish));
 }
 
