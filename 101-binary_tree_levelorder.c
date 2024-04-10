@@ -2,10 +2,10 @@
 #include <assert.h>
 
 
-void QueuePush(Queue* q, binary_tree_t *data);
-void QueuePop(Queue* q);
-binary_tree_t *QueueFront(Queue* q);
-int QueueEmpty(Queue* q);
+void QueuePush(Queue *q, binary_tree_t *data);
+void QueuePop(Queue *q);
+binary_tree_t *QueueFront(Queue *q);
+int QueueEmpty(Queue *q);
 
 /**
  * QueuePush - Push node to queue
@@ -45,7 +45,7 @@ void QueuePush(Queue *q, binary_tree_t *data)
 int QueueEmpty(Queue *q)
 {
 	assert(q);
-	if (0 == q->size)
+	if (q->size == 0)
 		return (1);
 	else
 		return (0);
@@ -69,7 +69,7 @@ binary_tree_t *QueueFront(Queue *q)
  */
 void QueuePop(Queue *q)
 {
-	QNode* next;
+	QNode *next;
 
 	assert(q);
 	assert(!QueueEmpty(q));
