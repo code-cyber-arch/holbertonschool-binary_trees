@@ -10,7 +10,7 @@ bst_t *array_to_bst(int *array, size_t size)
 {
 	size_t i, j;
 	bst_t *root = NULL;
-	
+
 	if (array == NULL)
 		return (NULL);
 
