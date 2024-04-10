@@ -1,21 +1,24 @@
 #include "binary_trees.h"
 /**
- * binary_tree_height - measures the height of a binary tree
- * @tree: pointer to the root node of the tree to measure the height of
- *
- * Return: the height of the tree. If tree is NULL, return 0
+ * binary_tree_height - Measures the height of a binary tree.
+ * @tree: A pointer to the root node of the tree to measure the height.
+ * Return: If tree is NULL, your function must return 0, else return height.
  */
-size_t binary_tree_height(const binary_tree_t *tree)
+size_t binary_tree_height_for_complete(const binary_tree_t *tree)
 {
-	size_t left, right;
+	int height_left, height_right;
 
 	if (tree == NULL)
-		return (0);
-	left = binary_tree_height(tree->left);
-	right = binary_tree_height(tree->right);
-	if (left >= right)
-		return (1 + left);
-	return (1 + right);
+		return 0;
+	if (tree->left == NULL)
+		height_left = 0;
+	else
+		height_left = 1 + binary_tree_height(tree->left);
+	if (tree->right == NULL)
+		height_right = 0;
+	else
+		height_right = 1 + binary_tree_height(tree->right);
+	return ((height_left > height_right) ? height_left : height_right);
 }
 /**
  * do_complete_recursive - Checks if a binary tree is complete.
@@ -83,7 +86,7 @@ int binary_tree_is_complete(const binary_tree_t *tree)
 
     if (tree == NULL)
         return (0);
-    return (do_complete_recursive(tree, binary_tree_height(tree),
+    return (do_complete_recursive(tree, binary_tree_height_for_complete(tree),
 			    0, &is_left_finish));
 }
 
