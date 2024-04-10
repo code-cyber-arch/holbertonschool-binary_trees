@@ -11,6 +11,8 @@
 int do_complete_recursive(const binary_tree_t *tree, int depth,
 		int level, int *is_left_finish)
 {
+	int left_res, right_res;
+
 	if (depth == level + 1)
 	{
 		if (*is_left_finish == 0)
@@ -43,9 +45,9 @@ int do_complete_recursive(const binary_tree_t *tree, int depth,
 		return (level == depth ? 1 : 0);
 	if (tree->left == NULL || tree->right == NULL)
 		return (0);
-	int left_res = do_complete_recursive(tree->left, depth,
+	left_res = do_complete_recursive(tree->left, depth,
 			level + 1, is_left_finish);
-	int right_res = do_complete_recursive(tree->right, depth,
+	right_res = do_complete_recursive(tree->right, depth,
 			level + 1, is_left_finish);
 	return (left_res && right_res);
 }
