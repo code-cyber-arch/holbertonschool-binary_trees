@@ -9,8 +9,8 @@
 binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 		const binary_tree_t *second)
 {
-	binary_tree_t *p_first = first;
-	binary_tree_t *q_first;
+	const binary_tree_t *p_first = first;
+	const binary_tree_t *q_first;
 
 	while (p_first)
 	{
