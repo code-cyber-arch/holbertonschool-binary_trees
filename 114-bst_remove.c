@@ -46,7 +46,7 @@ bst_t *bst_remove(bst_t *root, int value)
 		}
 		else if (root->left == NULL)
 		{
-			bst_t *temp = root;
+			temp = root;
 			root = root->right;
 			free(temp);
 		}
