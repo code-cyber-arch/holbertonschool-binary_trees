@@ -2,7 +2,7 @@
 #include <assert.h>
 
 
-void QueuePush(Queue* q, binary_tree_t *data);
+void QueuePush(Queue* q, const binary_tree_t *data);
 void QueuePop(Queue* q);
 binary_tree_t *QueueFront(Queue* q);
 int QueueEmpty(Queue* q);
@@ -12,7 +12,7 @@ int QueueEmpty(Queue* q);
  * @q: A pointer to queue
  * @data:ready to pushed data
  */
-void QueuePush(Queue *q, binary_tree_t *data)
+void QueuePush(Queue *q, const binary_tree_t *data)
 {
 	QNode *newnode;
 
