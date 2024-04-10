@@ -43,7 +43,8 @@ int do_complete_recursive(const binary_tree_t *tree, int depth,
 				*is_left_finish = 0;
 				return (1);
 			}
-			if (tree->left != NULL && tree->right == NULL)
+			if ((tree->left != NULL && tree->right == NULL) ||
+					(tree->left == NULL && tree->right == NULL))
 			{
 				*is_left_finish = 1;
 				return (1);
