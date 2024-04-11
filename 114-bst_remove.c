@@ -1,23 +1,87 @@
 #include "binary_trees.h"
 
+bst_t *get_minimum(bst_t *root);
+bst_t *bst_do_delete(bst_t *root, bst_t *node);
+bst_t *bst_find_node_recursive(bst_t *root, bst_t *node, int value);
+bst_t *bst_remove(bst_t *root, int value);
+
 /**
- * FindMin - Removes a node from a binary search tree.
- * @root: A pointer to the root node of the BST to remove a node from.
+ * get_minimum - Returns the minimum value of a binary search tree.
+ * @root: A pointer to the root node of the BST to search.
+ *
+ * Return: The minimum value in @tree.
  */
-bst_t *FindMin(bst_t *root)
+bst_t *get_minimum(bst_t *root)
 {
-	if (root == NULL)
+	while (root->left != NULL)
+		root = root->left;
+	return (root);
+}
+
+/**
+ * bst_do_delete - Deletes a node from a binary search tree.
+ * @root: A pointer to the root node of the BST.
+ * @node: A pointer to the node to delete from the BST.
+ *
+ * Return: A pointer to the new root node after deletion.
+ */
+bst_t *bst_do_delete(bst_t *root, bst_t *node)
+{
+	bst_t *parent = node->parent, *minimum = NULL;
+
+	if (node->left == NULL)
 	{
-		return (NULL);
+		if (parent != NULL && parent->left == node)
+			parent->left = node->right;
+		else if (parent != NULL)
+			parent->right = node->right;
+		if (node->right != NULL)
+			node->right->parent = parent;
+		free(node);
+		return (parent == NULL ? node->right : root);
 	}
-	else if (root->left == NULL)
+
+	if (node->right == NULL)
 	{
-		return (root);
+		if (parent != NULL && parent->left == node)
+			parent->left = node->left;
+		else if (parent != NULL)
+			parent->right = node->left;
+		if (node->left != NULL)
+			node->left->parent = parent;
+		free(node);
+		return (parent == NULL ? node->left : root);
 	}
-	else
+
+	minimum = get_minimum(node->right);
+	node->n = minimum->n;
+	return (bst_do_delete(root, minimum));
+}
+/**
+ * bst_find_node_recursive - find the node and go to delete.
+ * @root: A pointer to the root node;
+ * @node: A pointer to the current node
+ * @value: The value to remove from the BST.
+ * Return: A pointer to the root node after deletion.
+ */
+bst_t *bst_find_node_recursive(bst_t *root, bst_t *node, int value)
+{
+	if (node != NULL)
 	{
-		return (FindMin(root->left));
+		if (node->n < value)
+		{
+			return (bst_find_node_recursive(root, node->right, value));
+		}
+		else if (node->n > value)
+		{
+			return (bst_find_node_recursive(root, node->left, value));
+		}
+		else
+		{
+			return (bst_do_delete(root, node));
+		}
 	}
+	return (NULL);
 }
 /**
  * bst_remove - Removes a node from a binary search tree.
@@ -29,40 +93,6 @@ bst_t *FindMin(bst_t *root)
  */
 bst_t *bst_remove(bst_t *root, int value)
 {
-	bst_t *temp;
-
-	if (root == NULL)
-		return (root);
-	else if (value < root->n)
-		root->left = bst_remove(root->left, value);
-	else if (value > root->n)
-		root->right = bst_remove(root->right, value);
-	else
-	{
-		if (root->left == NULL && root->right == NULL)
-		{
-			free(root);
-			root = NULL;
-		}
-		else if (root->left == NULL)
-		{
-			temp = root;
-			root = root->right;
-			free(temp);
-		}
-		else if (root->right == NULL)
-		{
-			temp = root;
-			root = root->left;
-			free(temp);
-		}
-		else
-		{
-			temp = FindMin(root->right);
-			root->n = temp->n;
-			root->right = bst_remove(root->right, temp->n);
-		}
-	}
-	return (root);
+	return (bst_find_node_recursive(root, root, value));
 }
 
