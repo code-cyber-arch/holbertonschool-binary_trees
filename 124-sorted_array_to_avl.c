@@ -8,7 +8,7 @@
  * @parent: pointer to parent node
  * Return: newly created node
  */
-avl_t *sorted_array_to_avl_recursion(int *array, int start, 
+avl_t *sorted_array_to_avl_recursion(int *array, int start,
 		int end, avl_t *parent)
 {
 	avl_t *new;
